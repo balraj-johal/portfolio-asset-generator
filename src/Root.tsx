@@ -1,19 +1,21 @@
 import { Composition } from "remotion";
-import { MINUTE_IN_FRAMES } from "./config";
 
-import "./styles/index.css";
+import "./styles/global.css";
+import { COMPOSITIONS } from "./compositions";
+import { DIMENSIONS, FRAMES_PER_SECOND } from "./config";
 
 export const RemotionRoot = () => {
   return (
     <>
-      {/* <Composition
-        id="MenuOne"
-        component={MenuOne}
-        durationInFrames={MINUTE_IN_FRAMES * 30}
-        fps={24}
-        width={1280}
-        height={720}
-      /> */}
+      {COMPOSITIONS.map(config => (
+        <Composition
+          key={config.id}
+          fps={FRAMES_PER_SECOND}
+          width={DIMENSIONS.width}
+          height={DIMENSIONS.height}
+          {...config}
+        />
+      ))}
     </>
   );
 };
